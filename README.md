@@ -5,3 +5,4 @@
 	
 目录：
 	1.SimpleDieLock
+	2.SetGetThread
