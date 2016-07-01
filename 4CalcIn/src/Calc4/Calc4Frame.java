@@ -5,7 +5,14 @@
  */
 package Calc4;
 
+import Util.MyLookAndFeel;
+import Util.UiUtil;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -18,8 +25,12 @@ public class Calc4Frame extends javax.swing.JFrame {
      */
     public Calc4Frame() {
         initComponents();
+        init();
     }
 
+    public void init(){
+        UiUtil.setFrameCenter(this);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,7 +52,7 @@ public class Calc4Frame extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        calc = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -91,9 +102,19 @@ public class Calc4Frame extends javax.swing.JFrame {
         });
 
         jMenu1.setText("File");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
 
-        jMenuItem1.setText("计算器");
-        jMenu1.add(jMenuItem1);
+        calc.setText("计算器");
+        calc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calcActionPerformed(evt);
+            }
+        });
+        jMenu1.add(calc);
 
         jMenuItem2.setText("退出");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -108,6 +129,11 @@ public class Calc4Frame extends javax.swing.JFrame {
         jMenu2.setText("Edit");
 
         jMenuItem3.setText("清空");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem3);
 
         jMenuBar1.add(jMenu2);
@@ -183,10 +209,12 @@ public class Calc4Frame extends javax.swing.JFrame {
         this.firstNum.setText("");
         this.secondNum.setText("");
         this.result.setText("");
+        this.firstNum.requestFocus();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void calcResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcResultActionPerformed
@@ -235,6 +263,9 @@ public class Calc4Frame extends javax.swing.JFrame {
                 }
         }
         this.result.setText(String.valueOf(resultNum));
+        if(selectItem=="/"&&secondNumInt==0){
+            this.result.setText("");
+        }
         result.setEditable(false);
     }//GEN-LAST:event_calcResultActionPerformed
 
@@ -251,6 +282,28 @@ public class Calc4Frame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.result.setText("");
     }//GEN-LAST:event_secondNumMouseClicked
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+       
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void calcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcActionPerformed
+ try {
+            // TODO add your handling code here:
+            Runtime rt1 = Runtime.getRuntime();
+            rt1.exec("calc");
+        } catch (IOException ex) {
+            Logger.getLogger(Calc4Frame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_calcActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        this.firstNum.setText("");
+        this.secondNum.setText("");
+        this.result.setText("");
+        this.firstNum.requestFocus();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -277,7 +330,18 @@ public class Calc4Frame extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Calc4Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+        try {
+            //</editor-fold>
+            UIManager.setLookAndFeel(MyLookAndFeel.JTATTOO_MCWIN);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Calc4Frame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Calc4Frame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Calc4Frame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(Calc4Frame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -288,6 +352,7 @@ public class Calc4Frame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem calc;
     private javax.swing.JButton calcResult;
     private javax.swing.JTextField firstNum;
     private javax.swing.JButton jButton2;
@@ -298,7 +363,6 @@ public class Calc4Frame extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JTextField result;
