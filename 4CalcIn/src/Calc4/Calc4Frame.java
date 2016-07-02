@@ -28,9 +28,11 @@ public class Calc4Frame extends javax.swing.JFrame {
         init();
     }
 
-    public void init(){
+    public void init() {
         UiUtil.setFrameCenter(this);
+        this.setResizable(false);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,6 +60,11 @@ public class Calc4Frame extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         firstNum.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -72,6 +79,11 @@ public class Calc4Frame extends javax.swing.JFrame {
         secondNum.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 secondNumMouseClicked(evt);
+            }
+        });
+        secondNum.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                secondNumKeyPressed(evt);
             }
         });
 
@@ -91,6 +103,11 @@ public class Calc4Frame extends javax.swing.JFrame {
         calcResult.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 calcResultActionPerformed(evt);
+            }
+        });
+        calcResult.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                calcResultKeyPressed(evt);
             }
         });
 
@@ -217,6 +234,46 @@ public class Calc4Frame extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void resultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultActionPerformed
+
+    }//GEN-LAST:event_resultActionPerformed
+
+    private void firstNumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_firstNumMouseClicked
+        // TODO add your handling code here:
+        this.result.setText("");
+    }//GEN-LAST:event_firstNumMouseClicked
+
+    private void secondNumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_secondNumMouseClicked
+        // TODO add your handling code here:
+        this.result.setText("");
+    }//GEN-LAST:event_secondNumMouseClicked
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void calcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcActionPerformed
+        try {
+            // TODO add your handling code here:
+            Runtime rt1 = Runtime.getRuntime();
+            rt1.exec("calc");
+        } catch (IOException ex) {
+            Logger.getLogger(Calc4Frame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_calcActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        this.firstNum.setText("");
+        this.secondNum.setText("");
+        this.result.setText("");
+        this.firstNum.requestFocus();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void calcResultKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_calcResultKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_calcResultKeyPressed
+
     private void calcResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcResultActionPerformed
         String firstNumString = firstNum.getText().trim();
         String selectItem = selectSign.getSelectedItem().toString();
@@ -263,47 +320,19 @@ public class Calc4Frame extends javax.swing.JFrame {
                 }
         }
         this.result.setText(String.valueOf(resultNum));
-        if(selectItem=="/"&&secondNumInt==0){
+        if (selectItem == "/" && secondNumInt == 0) {
             this.result.setText("");
         }
         result.setEditable(false);
     }//GEN-LAST:event_calcResultActionPerformed
 
-    private void resultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultActionPerformed
-        
-    }//GEN-LAST:event_resultActionPerformed
-
-    private void firstNumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_firstNumMouseClicked
+    private void secondNumKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_secondNumKeyPressed
         // TODO add your handling code here:
-        this.result.setText("");
-    }//GEN-LAST:event_firstNumMouseClicked
+    }//GEN-LAST:event_secondNumKeyPressed
 
-    private void secondNumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_secondNumMouseClicked
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         // TODO add your handling code here:
-        this.result.setText("");
-    }//GEN-LAST:event_secondNumMouseClicked
-
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-       
-    }//GEN-LAST:event_jMenu1ActionPerformed
-
-    private void calcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcActionPerformed
- try {
-            // TODO add your handling code here:
-            Runtime rt1 = Runtime.getRuntime();
-            rt1.exec("calc");
-        } catch (IOException ex) {
-            Logger.getLogger(Calc4Frame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_calcActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
-        this.firstNum.setText("");
-        this.secondNum.setText("");
-        this.result.setText("");
-        this.firstNum.requestFocus();
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_formKeyPressed
 
     /**
      * @param args the command line arguments
@@ -333,18 +362,13 @@ public class Calc4Frame extends javax.swing.JFrame {
         try {
             //</editor-fold>
             UIManager.setLookAndFeel(MyLookAndFeel.JTATTOO_MCWIN);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Calc4Frame.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(Calc4Frame.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(Calc4Frame.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
             Logger.getLogger(Calc4Frame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Calc4Frame().setVisible(true);
             }
