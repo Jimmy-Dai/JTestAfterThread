@@ -9,4 +9,5 @@
 	3.TimePlay
 	4.Frame
 	5.4calc
+	6.LoginRegister with 4calc
 	

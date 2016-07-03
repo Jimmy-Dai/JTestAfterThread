@@ -1,6 +1,7 @@
-package Util;
+package cn.util;
 
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 
@@ -8,11 +9,11 @@ public class UiUtil {
 	private UiUtil() {
 	}
 	static Toolkit tk = Toolkit.getDefaultToolkit();
-	public static void setFrameImage(Frame f){
-		Image i = tk.getImage("src\\cn\\java\\image\\9.png");
+	public static void setFrameImage(JFrame f,String imageName){
+		Image i = tk.getImage("src\\cn\\resource\\"+imageName);
 		f.setIconImage(i);
 	}
-	public static void setFrameCenter(Frame f){
+	public static void setFrameCenter(JFrame f){
 		Dimension d = tk.getScreenSize();
 		double screenWidth = d.getWidth();
 		double screenHeight = d.getHeight();
