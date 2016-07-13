@@ -11,3 +11,5 @@
 	5.4calc
 	6.LoginRegister with 4calc
 	7.UDP&TCP
+	8.Reflection
+	9.Enum
